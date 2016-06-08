@@ -3,7 +3,7 @@ OUTPUT_NAME=$2
 
 NORMAL=$(tput sgr0)
 GREEN=$(tput setaf 2; tput bold)
-YELLOW=$(tput setaf 3; tput bold)
+YELLOW=$(tput setaf 3)
 RED=$(tput setaf 1; tput bold)
 
 function error() {
@@ -40,12 +40,13 @@ info "Associating Google score..."
 ./scripts/from_wikidata_answer_to_popularity.sh ${TFILE} > ${OUTPUT_NAME} &
 
 LENGTH=$(cat ${TFILE} | wc -l)
+touch ${OUTPUT_NAME}
 STEP=$(cat ${OUTPUT_NAME} | wc -l)
 while [ $STEP != $LENGTH ]
 do
     STEP=$(cat ${OUTPUT_NAME} | wc -l)
     PERCENT=$(( 100*$STEP/$LENGTH ))
-    echo -ne Associated $STEP files out of $LENGTH \($PERCENT%\)"\r"
+    echo -ne Associated score for $STEP people out of $LENGTH \($PERCENT%\)"\r"
     sleep 1
 done
 echo -ne '\n'
