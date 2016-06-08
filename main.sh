@@ -33,11 +33,23 @@ fi
 
 info "Reading ${INPUT_NAME} to scrap Wikidata..."
 TFILE="/tmp/$(basename $0).$$.tmp"
-~/Projects/reminiz/request_wikidata.sh $INPUT_NAME ${TFILE}
+./scripts/request_wikidata.sh $INPUT_NAME ${TFILE}
 info "Wikidata data written in ${TFILE}"
 
 info "Associating Google score..."
-~/Projects/reminiz/from_wikidata_answer_to_popularity.sh ${TFILE} > ${OUTPUT_NAME}
+./scripts/from_wikidata_answer_to_popularity.sh ${TFILE} > ${OUTPUT_NAME} &
+
+LENGTH=$(cat ${TFILE} | wc -l)
+STEP=$(cat ${OUTPUT_NAME} | wc -l)
+while [ $STEP != $LENGTH ]
+do
+    STEP=$(cat ${OUTPUT_NAME} | wc -l)
+    PERCENT=$(( 100*$STEP/$LENGTH ))
+    echo -ne Associated $STEP files out of $LENGTH \($PERCENT%\)"\r"
+    sleep 1
+done
+echo -ne '\n'
+
 success "Google score of each personnality has been associated in ${OUTPUT_NAME}."
 
 info "Sorting the personalities according to their Google score..."
