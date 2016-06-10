@@ -1,4 +1,4 @@
-SELECT ?human ?human_label
+SELECT ?human_label ?human
 WHERE
 {
     ?human wdt:P106 wd:Q937857 .
