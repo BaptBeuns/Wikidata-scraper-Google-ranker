@@ -23,4 +23,4 @@ response = json.loads(urllib.urlopen(url).read())
 if len(response['itemListElement']) > 0:
   element = response['itemListElement'][0]
   #print element['result']['name'] + ',' + str(element['resultScore'])
-  print '%07d' % int(element['resultScore'])
+  print '%07d, <a href="%s">%s</a>' % (int(element['resultScore']), element['result']['detailedDescription']['url'], element['result']['detailedDescription']['url'])
