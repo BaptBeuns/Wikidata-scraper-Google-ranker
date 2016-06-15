@@ -37,7 +37,8 @@ TFILE="/tmp/$(basename $0).$$.tmp"
 info "Wikidata data written in ${TFILE}"
 
 info "Associating Google score..."
-./scripts/from_wikidata_answer_to_popularity.sh ${TFILE} > ${OUTPUT_NAME} &
+echo "./scripts/get_google_score.py ${TFILE} ${OUTPUT_NAME} &"
+./scripts/get_google_score.py ${TFILE} ${OUTPUT_NAME}
 
 LENGTH=$(cat ${TFILE} | wc -l)
 touch ${OUTPUT_NAME}
@@ -47,7 +48,7 @@ do
     STEP=$(cat ${OUTPUT_NAME} | wc -l)
     PERCENT=$(( 100*$STEP/$LENGTH ))
     echo -ne Associated score for $STEP people out of $LENGTH \($PERCENT%\)"\r"
-    sleep 1
+    sleep 0.2
 done
 echo -ne '\n'
 

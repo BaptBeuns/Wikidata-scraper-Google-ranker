@@ -6,4 +6,4 @@ WHERE
     OPTIONAL {?human wdt:P570 ?d }
     FILTER (!bound(?d))
     ?human rdfs:label ?human_label filter (lang(?human_label) = 'fr') .
-} LIMIT 10
+} LIMIT 20
