@@ -24,7 +24,7 @@ sys.stdout.flush()
 sys.stdout.write("\b" * (toolbar_width+1)) # return to start of line, after '['
 
 with io.open(output_name,'w',encoding='utf8') as output:
-    for index, query in enumerate(names):
+    for query in names:
         if query != u'':
             api_key = open('.api_key').read()
             service_url = 'https://kgsearch.googleapis.com/v1/entities:search'
