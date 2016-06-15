@@ -54,5 +54,5 @@ echo -ne '\n'
 success "Google score of each personnality has been associated in ${OUTPUT_NAME}."
 
 info "Sorting the personalities according to their Google score..."
-sort -r ${OUTPUT_NAME} -o ${OUTPUT_NAME}
+sort -rt, -k2 -g ${OUTPUT_NAME} -o ${OUTPUT_NAME}
 success "${OUTPUT_NAME} has been sorted."
