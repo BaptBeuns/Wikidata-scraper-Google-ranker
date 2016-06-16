@@ -40,18 +40,6 @@ info "Associating Google score..."
 echo "./scripts/get_google_score.py ${TFILE} ${OUTPUT_NAME} &"
 ./scripts/get_google_score.py ${TFILE} ${OUTPUT_NAME}
 
-LENGTH=$(cat ${TFILE} | wc -l)
-touch ${OUTPUT_NAME}
-STEP=$(cat ${OUTPUT_NAME} | wc -l)
-while [ $STEP != $LENGTH ]
-do
-    STEP=$(cat ${OUTPUT_NAME} | wc -l)
-    PERCENT=$(( 100*$STEP/$LENGTH ))
-    echo -ne Associated score for $STEP people out of $LENGTH \($PERCENT%\)"\r"
-    sleep 0.2
-done
-echo -ne '\n'
-
 success "Google score of each personnality has been associated in ${OUTPUT_NAME}."
 
 info "Sorting the personalities according to their Google score..."

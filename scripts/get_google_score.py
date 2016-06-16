@@ -46,8 +46,14 @@ with io.open(output_name,'w',encoding='utf8') as output:
             if len(response['itemListElement']) > 0:
                 element = response['itemListElement'][0]
                 score = str(int(element['resultScore']))
-                name = element['result']['name']
-                url = element['result']['detailedDescription']['url']
+                try:
+                    name = element['result']['name']
+                except KeyError:
+                    name = query.split(',')[0]
+                try:
+                    url = element['result']['detailedDescription']['url']
+                except KeyError:
+                    url = u"http://google.com/search?q=" + query.split(',')[0]
                 output.write(u"%s, %s, <a href='%s'>%s</a>\n" % (query.split(',')[0], score, url, name))
                 sys.stdout.write("-")
                 sys.stdout.flush()
