@@ -19,7 +19,7 @@ names = f.split('\n')
 names_length = len(names)
 toolbar_width = names_length
 
-sys.stdout.write("[%s]" % (" " * toolbar_width))
+sys.stdout.write("Checking %d names\n[%s]" % (names_length, " " * toolbar_width))
 sys.stdout.flush()
 sys.stdout.write("\b" * (toolbar_width+1)) # return to start of line, after '['
 
