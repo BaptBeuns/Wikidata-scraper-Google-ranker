@@ -54,7 +54,7 @@ with io.open(output_name,'w',encoding='utf8') as output:
                     url = element['result']['detailedDescription']['url']
                 except KeyError:
                     url = u"http://google.com/search?q=" + query.split(',')[0]
-                output.write(u"%s, %s, <a href='%s'>%s</a>\n" % (query.split(',')[0], score, url, name))
+                output.write(u"%s, %s, <a href='%s'>link</a>\n" % (query.split(',')[0], score, url, name))
                 sys.stdout.write("-")
                 sys.stdout.flush()
 

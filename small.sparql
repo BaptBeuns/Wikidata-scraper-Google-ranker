@@ -1,9 +1,0 @@
-SELECT ?human_label ?human
-WHERE
-{
-    ?human wdt:P106 wd:Q937857 .
-    ?human wdt:P27 wd:Q142 .
-    OPTIONAL {?human wdt:P570 ?d }
-    FILTER (!bound(?d))
-    ?human rdfs:label ?human_label filter (lang(?human_label) = 'fr') .
-} LIMIT 20
